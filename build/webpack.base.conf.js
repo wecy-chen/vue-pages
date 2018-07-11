@@ -28,7 +28,8 @@ module.exports = {
       '@': resolve('src'),
       '@api':resolve('src/api'),
       '@components':resolve('src/components'),
-      'common':resolve('src/common')
+      'common':resolve('src/common'),
+      'jquery' : 'jquery' //add
     }
   },
   module: {
@@ -86,7 +87,8 @@ module.exports = {
     new webpack.ProvidePlugin({
       $: "jquery",
       jQuery: "jquery",
-      "windows.jQuery": "jquery"
+      "windows.jQuery": "jquery",
+       Popper : ['popper.js' , 'default']
     })
   ]
 }

@@ -3,11 +3,13 @@ import App from './App'
 import notify from './plugin/notify.js';
 import store from './store'
 
-import '@/assets/bootstrap/css/bootstrap.min.css'
-import '@/assets/bootstrap/js/bootstrap.min'
 
 import router from './router'
-//import $ from 'jquery'
+
+import $ from 'jquery'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap/dist/js/bootstrap.min.js'
+
 
 // 导入轮播图插件
 import VueAwesomeSwiper from 'vue-awesome-swiper';
@@ -27,5 +29,5 @@ new Vue({
   el: '#app',
   render: h => h(App),
   store,
-  router
+  router,
 })
