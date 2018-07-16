@@ -1,6 +1,6 @@
 <template>
   <div class="list">
-    <scroll class="listview" 
+    <scroll  
     :listData="cityData" 
     ref="listview"
     :listenScroll="listenScroll"
@@ -38,7 +38,6 @@ import Scroll from '@/base/scroll/scroll'
 let cityData  = require('@/api/citys.json') //导入数据
  const TITLE_HEIGHT = 30 //标题的高度
  const ANCHOR_HEIGHT = window.innerHeight <= 480 ? 17 : 18  //导航A-Z的高度
- const scrollClientHeight= window.innerHeight-50 // 滑动区的屏幕高度
  //设置属性
 function getData(el, name, val) {
   const prefix = 'data-'
@@ -61,7 +60,7 @@ export default {
   created() { //没有放在data属性里不需要观察数据变化
     this.touch = {}
     this.listenScroll = true //监听滑动的事件
-    this.probeType = 3 //默认是1 设置3防止节流
+    this.probeType = 3 //默认是1 设置3防止节流,派发滚动事件
     this.listHeight = [] //offsetheight
   },
   computed:{
@@ -184,55 +183,56 @@ export default {
   @import '~common/stylus/reset'
   @import '~common/stylus/variable'
     .list
-      position:fixed
+      position:absolute
+      left:0
+      right:0
       top:0
       bottom:50px
-      width:100%
-      .listview
-        position:relative
-        width:100%
-        height:100%
-        .list-group
-          background-color:$color-white
-          border-radius:2px
-          font-size:$fontSize-medium
-          .list-group-title
-            padding-left:5px
-            height:30px
-            line-height:30px
-            background-color:$color-light-grey-ss
-            color:$color-light-cyan
-          .list-group-item
-            padding-left:5px
-            height:30px
-            line-height:30px
-        //侧边栏
-        .list-shortcut
-          position:absolute
-          z-index:30
-          top:50%
-          right:0
-          tranform:translateY(-50%)
-          width:20px
-          font-size:$fontSize-medium
-          text-align:center
+      
+      .list-group
+        background-color:$color-white
+        border-radius:2px
+        font-size:$fontSize-medium
+        .list-group-title
+          padding-left:5px
+          height:30px
+          line-height:30px
           background-color:$color-light-grey-ss
-          border-radius:2px
-          .item
-            color:$color-light-grey
-            height:ANCHOR_HEIGHT
-            &.current
-              color:$color-light-cyan
-        //A-Z导航栏
-        .list-fixed
-          position:absolute
-          top:0
-          left:0
-          width:100%
-          .fixed-title
-            height:30px
-            line-height:30px
-            padding-left:5px
-            background-color:$color-light-grey-ss
-            color:$color-light-cyan     
+          color:$color-light-cyan
+        .list-group-item
+          padding-left:5px
+          height:30px
+          line-height:30px
+      //侧边栏
+      .list-shortcut
+        position:absolute
+        z-index:30
+        top:50%
+        right:0
+        display: inline-block
+        transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        -moz-transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        -o-transform: translateY(-50%);
+        width:20px
+        text-align:center
+        background-color:$color-light-grey-ss
+        border-radius:2px
+        .item
+          color:$color-light-grey
+          &.current
+            color:$color-light-cyan
+      //A-Z导航栏
+      .list-fixed
+        position:absolute
+        top:0
+        left:0
+        width:100%
+        .fixed-title
+          height:30px
+          line-height:30px
+          padding-left:5px
+          background-color:$color-light-grey-ss
+          color:$color-light-cyan     
 </style>
